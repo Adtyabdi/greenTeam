@@ -5,13 +5,15 @@ import Link from 'next/link';
 const Header = () => {
   return (
     <>
-    <Link href ="/">
+    
     <div className="bg-blue-500 w-full h-44 p-4">
       <div className="flex justify-between items-center pt-3">
+      <Link href ="/">
         <div className="text-3xl font-semibold">
           <h1>Microgreen</h1>
           <h1>Team</h1>
         </div>
+      </Link>
         <Image src="/logo.png" width={70} height={70}/>
       </div>
       <div className="flex justify-between items-center gap-2 pt-4">
@@ -29,7 +31,7 @@ const Header = () => {
         </div>
       </div>
     </div>
-    </Link>
+    
     </>
   )
 }

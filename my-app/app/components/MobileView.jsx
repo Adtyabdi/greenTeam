@@ -11,12 +11,10 @@ const MobileView = () => {
     <>
       <Header/>
       <SetPoint/>
-      <div className="gap-3">
       <Temp/>
       <Humidity/>
       <Intensity/>
       <Battery/>
-      </div>
       <div className="flex flex-col items-center justify-center">
         <main className="text-center">
           <h1>Selamat datang di Website Mobile!</h1>
