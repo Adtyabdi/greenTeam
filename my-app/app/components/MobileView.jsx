@@ -1,20 +1,29 @@
-// app/components/MobileView.jsx
-"use client"; // Mark this component as a client component
-
 import React from 'react';
 import Header from './Header';
-import Footer from './Footer';
+import SetPoint from './SetPoint';
+import Temp from './Temp';
+import Humidity from './Humidity';
+import Intensity from './Intensity';
+import Battery from './Battery';
 
 const MobileView = () => {
   return (
-    <div className="flex flex-col items-center justify-center h-screen bg-background text-foreground">
-      <Header />
-      <main className="flex-1">
-        <h1>Selamat datang di Website Mobile!</h1>
-        <p>Ini adalah konten yang dirender untuk pengguna mobile.</p>
-      </main>
-      <Footer />
-    </div>
+    <>
+      <Header/>
+      <SetPoint/>
+      <div className="gap-3">
+      <Temp/>
+      <Humidity/>
+      <Intensity/>
+      <Battery/>
+      </div>
+      <div className="flex flex-col items-center justify-center">
+        <main className="text-center">
+          <h1>Selamat datang di Website Mobile!</h1>
+          <p>Ini adalah konten yang dirender untuk pengguna mobile.</p>
+        </main>
+      </div>
+    </>
   );
 };
 
