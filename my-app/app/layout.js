@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
 import { useEffect, useState } from "react";
+import { SessionProvider } from 'next-auth/react';
 import Maintenance from "./components/Maintenance";
-import MobileView from "./components/MobileView";
 import './globals.css';
 
 export default function RootLayout({ children }) {
@@ -24,10 +24,12 @@ export default function RootLayout({ children }) {
   }, []);
 
   return (
-    <html lang="en">
-      <body>
-        {isMobileView ? children : <Maintenance />}
-      </body>
-    </html>
+    <SessionProvider>
+      <html lang="en">
+        <body>
+          {isMobileView ? children : <Maintenance />}
+        </body>
+      </html>
+    </SessionProvider>
   );
 }
