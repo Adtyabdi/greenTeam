@@ -1,9 +1,25 @@
+'use client'; 
+
+import { useSession } from 'next-auth/react';
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation'; 
 import React from 'react'
-// import Header2 from '../components/Header2'
 import Header from '../components/Header'
 import EnterCancel from '../components/EnterCancel'
 
 const setPo = () => {
+  const { data: session, status } = useSession(); 
+  const router = useRouter();
+
+  useEffect(() => {
+    if (status === 'unauthenticated') {
+      router.push('/');
+    }
+  }, [status, router]);
+
+  if (status === 'loading') {
+    return <div>Loading...</div>;
+  }
   return (
     <>
     <Header/>
@@ -46,14 +62,6 @@ const setPo = () => {
           />
         </form>
       </div>
-      {/* <div className="flex items-center justify-center gap-4 py-7">
-        <button className = "bg-red-500 hover:bg-red-600 w-1/5 p-2 rounded-lg text-center font-semibold">
-          <h1>Cancel</h1>
-        </button>
-        <button className = "bg-green-500 hover:bg-green-600 w-1/5 p-2 rounded-lg text-center font-semibold">
-          <h1>Enter</h1>
-        </button>
-      </div> */}
       <EnterCancel/>
     </div>
 

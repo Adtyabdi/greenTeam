@@ -9,7 +9,6 @@ import Temp from './Temp';
 import Humidity from './Humidity';
 import Intensity from './Intensity';
 import Battery from './Battery';
-import SignOutButton from './SignOut';
 import SignOut from './SignOut';
 
 const MobileView = () => {

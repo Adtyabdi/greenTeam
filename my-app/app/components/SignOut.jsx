@@ -1,17 +1,18 @@
-'use client';
-
-import React from 'react';
 import { signOut } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
+import React from 'react';
 
 const SignOut = () => {
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    await signOut({ callbackUrl: '/' }); // Setelah sign out, redirect ke halaman login
+    await signOut({ callbackUrl: '/' });
+    router.push('/');
   };
 
   return (
     <div>
-      <button onClick={handleSignOut}>Sign out</button>
+      <button onClick={handleSignOut}>Sign Out</button>
     </div>
   );
 };

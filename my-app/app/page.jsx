@@ -1,14 +1,3 @@
-// import React from 'react';
-// import MobileView from './components/MobileView';
-
-// const Page = () => {
-//   return (
-//     <MobileView />
-//   );
-// }
-
-// export default Page;
-
 import React from 'react'
 import Link from 'next/link'
 
@@ -16,9 +5,12 @@ import Link from 'next/link'
 const page = () => {
   return (
     <>
-    <div>
-     <Link href="./api/auth/signin">Sign in</Link>
-     </div>
+    <div className="flex items-center w-full h-screen justify-center">
+      <div className="text-center">
+        <h1 className="pb-6 ">Tinggal klik aja ngga usah cari yang ngga ada</h1>  
+        <Link href="./api/auth/signin"className="p-2 bg-sky-600 hover:bg-sky-400 rounded-lg">Sign in</Link>
+      </div>
+    </div>
     </>
     
   )
