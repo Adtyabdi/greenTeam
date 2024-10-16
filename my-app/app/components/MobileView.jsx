@@ -4,12 +4,11 @@ import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation'; 
 import Header from './Header';
-import SetPoint from './SetPoint';
-import Temp from './Temp';
-import Humidity from './Humidity';
-import Intensity from './Intensity';
-import Battery from './Battery';
+import Informasi from './Informasi';
+import RiwayatBrokoli from './RiwayatBrokoli';
+import RiwayatKecambah from './RiwayatKecambah';
 import SignOut from './SignOut';
+import Footer from './Footer';
 
 const MobileView = () => {
   const { data: session, status } = useSession(); 
@@ -28,11 +27,10 @@ const MobileView = () => {
   return (
     <div>
       <Header />
-      <SetPoint />
-      <Temp />
-      <Humidity />
-      <Intensity />
-      <Battery />
+      <Informasi/>
+      <RiwayatBrokoli/>
+      <RiwayatKecambah/>
+      {/* <Footer/> */}
       <SignOut />
     </div>
   );

@@ -22,7 +22,7 @@ const setPo = () => {
   }
   return (
     <>
-    <Header/>
+    {/* <Header/> */}
     <div className="bg-white m-5 rounded-lg">
       <div className="pt-4">
         <h1 className="text-center text-2xl text-black font-bold">Temperature</h1>

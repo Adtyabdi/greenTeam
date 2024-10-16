@@ -6,7 +6,14 @@ export async function GET(request) {
     const connection = await db();
     console.log('Database connected');
 
-    const [rows] = await connection.execute('SELECT * FROM incubator');
+    const [rows] = await connection.execute(`SELECT 
+          (dht1_temp + dht2_temp) / 2 AS avg_temp,
+          (dht1_humi + dht2_humi) / 2 AS avg_humidity,
+          (moisture1 + moisture2) / 2 AS avg_moisture,
+          light,
+          date
+      FROM incubator
+      ORDER BY date DESC;`);
     console.log('Data fetched from database:', rows);
 
     await connection.end();
