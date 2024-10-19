@@ -12,17 +12,17 @@ export async function GET(req) {
       try {
         while (true) {
           const [rows] = await connection.execute(`
-            SELECT 
-              (dht1_temp + dht2_temp) / 2 AS avg_temp,
-              (dht1_humi + dht2_humi) / 2 AS avg_humidity,
-              (moisture1 + moisture2) / 2 AS avg_moisture,
-              light,
-              date
-            FROM incubator
-            ORDER BY date DESC
-            LIMIT 1;
-          `);
-
+           SELECT 
+                voltage,
+                current,
+                (voltage * current) AS power,  -- Menghitung daya
+                temp,
+                light
+            FROM 
+                battery
+            ORDER BY 
+                date DESC
+            LIMIT 1;`);
           if (rows.length > 0) {
             writer.write(`data: ${JSON.stringify(rows[0])}\n\n`);
           } else {
