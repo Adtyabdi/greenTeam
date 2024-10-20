@@ -30,8 +30,8 @@ const MobileView = () => {
       <Informasi/>
       <RiwayatBrokoli/>
       <RiwayatKecambah/>
-      {/* <Footer/> */}
-      <SignOut />
+      <Footer/>
+      {/* <SignOut /> */}
     </div>
   );
 };
