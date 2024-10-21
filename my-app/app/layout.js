@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
 import { useEffect, useState } from "react";
-import { SessionProvider } from 'next-auth/react';
+import { SessionProvider } from "next-auth/react";
 import Maintenance from "./components/Maintenance";
-import './globals.css';
+import "./globals.css";
 
 export default function RootLayout({ children }) {
   const [isMobileView, setIsMobileView] = useState(true);
@@ -25,10 +25,8 @@ export default function RootLayout({ children }) {
 
   return (
     <SessionProvider>
-      <html lang="en">
-        <body>
-          {isMobileView ? children : <Maintenance />}
-        </body>
+      <html lang='en'>
+        <body>{isMobileView ? children : <Maintenance />}</body>
       </html>
     </SessionProvider>
   );

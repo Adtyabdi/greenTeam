@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css'; // CSS Swiper
+import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 
@@ -24,7 +24,7 @@ const Header = () => {
           >
             <SwiperSlide>
               <Image
-                src="/Rectangle.png" // Gambar di folder public/images/
+                src="/Rectangle.png"
                 alt="Slide 1"
                 width={600}
                 height={300}

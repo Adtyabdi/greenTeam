@@ -13,9 +13,9 @@ export async function GET(req) {
         while (true) {
           const [rows] = await connection.execute(`
             SELECT 
-              (dht1_temp + dht2_temp) / 2 AS avg_temp,
-              (dht1_humi + dht2_humi) / 2 AS avg_humidity,
-              (moisture1 + moisture2) / 2 AS avg_moisture,
+              dht2_temp,
+              dht2_humi,
+              moisture2,
               light,
               date
             FROM incubator
