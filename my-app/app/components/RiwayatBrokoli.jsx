@@ -20,15 +20,15 @@ const RiwayatBrokoli = () => {
                 <h1 className='text-lg font-semibold border-b-2'>Brokoli</h1>
                 <div className='my-2'>
                     <div className='flex items-center'>
-                        <Image src="/noto_thermometer.png" width={28} height={28}/>
+                        <Image src="/noto_thermometer.png" width={28} height={28} alt='temp'/>
                         <p>TESSS</p>
                     </div>
                     <div className='flex my-2 items-center'>
-                        <Image src="/ion_water-sharp.png" width={28} height={28}/>
+                        <Image src="/ion_water-sharp.png" width={28} height={28} alt='water'/>
                         <p>TESS</p>
                     </div>
                     <div className='flex items-center'>
-                        <Image src="/game-icons_fertilizer-bag.png" width={28} height={28}/>
+                        <Image src="/game-icons_fertilizer-bag.png" width={28} height={28} alt='moisture'/>
                         <p>TESSSS</p>
                     </div>                    
                 </div>

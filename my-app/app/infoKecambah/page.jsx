@@ -8,11 +8,11 @@ import Footer from '../components/Footer'
 
 const page = () => {
 
-    const [data, setData] = useState(null);
+    const [data, setData] = useState({infoKecambah : null});
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const eventSource = new EventSource('/api/getKec');
+        const eventSource = new EventSource('/api/get');
 
         eventSource.onmessage = (event) => {
             const parsedData = JSON.parse(event.data);
@@ -29,6 +29,7 @@ const page = () => {
             eventSource.close();
         };
     }, []);
+    const {infoKecambah} = data; 
     return (
         <>
             <div className='p-4'>
@@ -43,15 +44,15 @@ const page = () => {
                     <div className='flex justify-between w-full p-2' style={{ background: '#F0FEEB' }}>
                         <div className='flex items-center'>
                             <Image src="/noto_thermometer.png" width={30} height={30} alt="Temperature Icon"></Image>
-                            <h1>{data ? data.dht2_temp : 'Loading...'} °C</h1>
+                            <h1>{infoKecambah ? `${infoKecambah.dht2_temp}` : 'Loading...'} °C</h1>
                         </div>
                         <div className='flex items-center'>
                             <Image src="/ion_water-sharp.png" width={30} height={30} alt="Humidity Icon"></Image>
-                            <h1>{data ? data.dht2_humi : 'Loading...'} %</h1>
+                            <h1>{infoKecambah ? infoKecambah.dht2_humi : 'Loading...'} %</h1>
                         </div>
                         <div className='flex items-center'>
                             <Image src="/game-icons_fertilizer-bag.png" width={30} height={30} alt="Moisture Icon"></Image>
-                            <h1>{data ? data.moisture2 : 'Loading...'} %</h1>
+                            <h1>{infoKecambah ? infoKecambah.moisture2 : 'Loading...'} %</h1>
                         </div>
                     </div>
                 </div>

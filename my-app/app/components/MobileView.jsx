@@ -7,7 +7,6 @@ import Header from './Header';
 import Informasi from './Informasi';
 import RiwayatBrokoli from './RiwayatBrokoli';
 import RiwayatKecambah from './RiwayatKecambah';
-import SignOut from './SignOut';
 import Footer from './Footer';
 
 const MobileView = () => {

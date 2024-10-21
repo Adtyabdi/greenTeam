@@ -7,7 +7,7 @@ export async function POST(req) {
     const {
       dht1_temp, dht1_humi,
       dht2_temp, dht2_humi,
-      moisture1, moisture2, light // ,battery
+      moisture1, moisture2, light
     } = body;
 
     if (
@@ -15,7 +15,6 @@ export async function POST(req) {
       dht2_temp === undefined || dht2_humi === undefined ||
       moisture1 === undefined || moisture2 === undefined ||
       light === undefined 
-    //   || battery === undefined
     ) {
       return new Response(
         JSON.stringify({ error: 'Data tidak lengkap' }),
@@ -39,8 +38,8 @@ export async function POST(req) {
     const [result] = await connection.execute(
       `INSERT INTO incubator 
       (date, dht1_temp, dht1_humi, dht2_temp, dht2_humi, moisture1, moisture2, light) 
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, //tambahkan ? untuk battery
-      [currentDate, dht1_temp, dht1_humi, dht2_temp, dht2_humi, moisture1, moisture2, light] //tambahkan battery jika setup plts sudah selesai
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
+      [currentDate, dht1_temp, dht1_humi, dht2_temp, dht2_humi, moisture1, moisture2, light]
     );
 
     await connection.end();

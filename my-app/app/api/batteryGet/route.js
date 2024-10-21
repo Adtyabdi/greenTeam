@@ -15,7 +15,7 @@ export async function GET(req) {
            SELECT 
                 voltage,
                 current,
-                (voltage * current) AS power,  -- Menghitung daya
+                (voltage * current) AS power,
                 temp,
                 light
             FROM 
