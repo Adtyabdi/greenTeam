@@ -72,10 +72,11 @@ const SetPoint = () => {
 
   return (
     <>
-      <div className='p-4'>
+      <div className="flex flex-col min-h-screen">
+      <div className="flex-grow p-4">
         <Link href="/dashboard">
           <div className="text-2xl font-semibold" style={{ color: '#167D0A' }}>
-            <h1 className='pb-2'>MicroGreens</h1>
+            <h1 className="pb-2">MicroGreens</h1>
           </div>
         </Link>
 
@@ -129,19 +130,23 @@ const SetPoint = () => {
           <div className="flex items-center justify-center gap-4 py-7">
             <button
               onClick={handleCancel}
-              className="bg-red-500 hover:bg-red-600 w-1/5 p-2 rounded-lg text-center font-semibold">
+              className="bg-red-500 hover:bg-red-600 w-1/5 p-2 rounded-lg text-center font-semibold"
+            >
               <h1>Cancel</h1>
             </button>
 
             <button
               onClick={handleEnter}
-              className="bg-green-500 hover:bg-green-600 w-1/5 p-2 rounded-lg text-center font-semibold">
+              className="bg-green-500 hover:bg-green-600 w-1/5 p-2 rounded-lg text-center font-semibold"
+            >
               <h1>Enter</h1>
             </button>
           </div>
         </div>
       </div>
+
       <Footer />
+    </div>
     </>
   );
 };

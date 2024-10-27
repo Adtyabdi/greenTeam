@@ -9,21 +9,28 @@ const Page = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const eventSource = new EventSource('/api/get');
+    const ws = new WebSocket('ws://localhost:8080'); // Ganti dengan URL WebSocket yang sesuai
 
-    eventSource.onmessage = (event) => {
+    ws.onopen = () => {
+      console.log('Connected to WebSocket server');
+    };
+
+    ws.onmessage = (event) => {
       const parsedData = JSON.parse(event.data);
       setData(parsedData);
     };
 
-    eventSource.onerror = (error) => {
-      console.error('EventSource failed:', error);
+    ws.onerror = (error) => {
+      console.error('WebSocket error:', error);
       setError('Failed to connect to the server. Please try again later.');
-      eventSource.close();
+    };
+
+    ws.onclose = () => {
+      console.log('WebSocket connection closed');
     };
 
     return () => {
-      eventSource.close();
+      ws.close(); // Menutup koneksi WebSocket saat komponen dibongkar
     };
   }, []);
 
@@ -61,26 +68,26 @@ const Page = () => {
         <table className="border-collapse border border-gray-300 w-full">
           <thead>
             <tr className="bg-gray-200">
-              <th className="border border-gray-300  text-center">Date</th>
-              <th className="border border-gray-300  text-center">Temperature</th>
-              <th className="border border-gray-300  text-center">Humidity</th>
-              <th className="border border-gray-300  text-center">Moisture</th>
+              <th className="border border-gray-300 text-center">Date</th>
+              <th className="border border-gray-300 text-center">Temperature</th>
+              <th className="border border-gray-300 text-center">Humidity</th>
+              <th className="border border-gray-300 text-center">Moisture</th>
             </tr>
           </thead>
           <tbody>
             {tabelBrokoli && tabelBrokoli.length > 0 ? (
               tabelBrokoli.map((row, index) => (
                 <tr key={index} className="odd:bg-white even:bg-gray-100">
-                  <td className="border border-gray-300  text-center">
+                  <td className="border border-gray-300 text-center">
                     {row.formatted_date}
                   </td>
-                  <td className="border border-gray-300  text-center">
+                  <td className="border border-gray-300 text-center">
                     {row.dht1_temp}
                   </td>
-                  <td className="border border-gray-300  text-center">
+                  <td className="border border-gray-300 text-center">
                     {row.dht1_humi}
                   </td>
-                  <td className="border border-gray-300  text-center">
+                  <td className="border border-gray-300 text-center">
                     {row.moisture1}
                   </td>
                 </tr>
