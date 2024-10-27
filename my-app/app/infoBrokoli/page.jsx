@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Footer from '../components/Footer';
 
 const Page = () => {
-  const [data, setData] = useState({ infoBrokoli: null});
+  const [data, setData] = useState({ infoBrokoli: null, tabelBrokoli: [] });
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Page = () => {
     };
   }, []);
 
-  const { infoBrokoli} = data;
+  const { infoBrokoli, tabelBrokoli } = data;
 
   return (
     <>
@@ -56,6 +56,44 @@ const Page = () => {
           </div>
         </div>
         {error && <div className="text-red-600">{error}</div>}
+      </div>
+      <div className='p-4'>
+        <table className="border-collapse border border-gray-300 w-full">
+          <thead>
+            <tr className="bg-gray-200">
+              <th className="border border-gray-300  text-center">Date</th>
+              <th className="border border-gray-300  text-center">Temperature</th>
+              <th className="border border-gray-300  text-center">Humidity</th>
+              <th className="border border-gray-300  text-center">Moisture</th>
+            </tr>
+          </thead>
+          <tbody>
+            {tabelBrokoli && tabelBrokoli.length > 0 ? (
+              tabelBrokoli.map((row, index) => (
+                <tr key={index} className="odd:bg-white even:bg-gray-100">
+                  <td className="border border-gray-300  text-center">
+                    {row.formatted_date}
+                  </td>
+                  <td className="border border-gray-300  text-center">
+                    {row.dht1_temp}
+                  </td>
+                  <td className="border border-gray-300  text-center">
+                    {row.dht1_humi}
+                  </td>
+                  <td className="border border-gray-300  text-center">
+                    {row.moisture1}
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={4} className="text-center py-4">
+                  Loading...
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
       </div>
       <Footer />
     </>

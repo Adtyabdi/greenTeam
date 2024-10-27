@@ -20,8 +20,32 @@ export async function GET(req) {
               date
             FROM incubator
             ORDER BY date DESC
-            LIMIT 10;
+            LIMIT 1;
           `);
+
+          const [tabelBrokoliRows] = await connection.execute(`
+            SELECT
+                dht1_temp,
+                dht1_humi,
+                moisture1, 
+                light,
+                DATE_FORMAT(date, ' %H:%i:%s') AS formatted_date
+            FROM incubator
+            ORDER BY date DESC
+            LIMIT 10;
+            `);
+
+          const [tabelKecambahRows] = await connection.execute(`
+            SELECT
+                dht2_temp,
+                dht2_humi,
+                moisture2, 
+                light,
+                DATE_FORMAT(date, ' %H:%i:%s') AS formatted_date
+            FROM incubator
+            ORDER BY date DESC
+            LIMIT 10;
+            `);
 
           const [kecambahRows] = await connection.execute(`
             SELECT 
@@ -32,25 +56,20 @@ export async function GET(req) {
               date
             FROM incubator
             ORDER BY date DESC
-            limit 10;
-          `);
-
-          const [avgRows] = await connection.execute(`
-            SELECT 
-                AVG((dht1_temp + dht2_temp) / 2) AS avg_temp,
-                AVG((dht1_humi + dht2_humi) / 2) AS avg_humi,
-                AVG((moisture1 + moisture2) / 2) AS avg_moisture,
-                DATE(date) AS date
-            FROM incubator
-            GROUP BY DATE(date)
-            ORDER BY date DESC
-            LIMIT 5;
+            limit 1;
           `);
 
           const result = {
             infoBrokoli: brokoliRows[0] || { message: "No data for Brokoli" },
-            infoKecambah: kecambahRows[0] || { message: "No data for Kecambah", },
-            avgData: avgRows[0] || {message:"Data not found"},
+            infoKecambah: kecambahRows[0] || {
+              message: "No data for Kecambah",
+            },
+            tabelBrokoli: tabelBrokoliRows.length
+              ? tabelBrokoliRows
+              : [{ message: "Data not found" }],
+            tabelKecambah: tabelKecambahRows.length
+              ? tabelKecambahRows
+              : [{ message: "Data not found" }],
           };
 
           writer.write(`data: ${JSON.stringify(result)}\n\n`);
