@@ -12,7 +12,6 @@ const SetPoint = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
 
-  // State untuk menyimpan nilai input
   const [tempMax, setTempMax] = useState('');
   const [tempMin, setTempMin] = useState('');
   const [humiMax, setHumiMax] = useState('');
@@ -73,80 +72,80 @@ const SetPoint = () => {
   return (
     <>
       <div className="flex flex-col min-h-screen">
-      <div className="flex-grow p-4">
-        <Link href="/dashboard">
-          <div className="text-2xl font-semibold" style={{ color: '#167D0A' }}>
-            <h1 className="pb-2">MicroGreens</h1>
-          </div>
-        </Link>
-
-        <div className="bg-white rounded-lg">
-          <div className="pt-4">
-            <h1 className="text-center text-lg text-black font-semibold">Temperature</h1>
-            <div className="flex flex-col px-4">
-              <label className="text-black font-medium text-base">Maximal Value</label>
-              <input
-                type="number"
-                className="bg-slate-200 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
-                placeholder="Input Here"
-                value={tempMax}
-                onChange={(e) => setTempMax(e.target.value)}
-              />
-
-              <label className="text-black font-medium text-base">Minimal Value</label>
-              <input
-                type="number"
-                className="bg-slate-200 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
-                placeholder="Input Here"
-                value={tempMin}
-                onChange={(e) => setTempMin(e.target.value)}
-              />
+        <div className="flex-grow p-4">
+          <Link href="/dashboard">
+            <div className="text-2xl font-semibold" style={{ color: '#167D0A' }}>
+              <h1 className="pb-2">MicroGreens</h1>
             </div>
-          </div>
+          </Link>
 
-          <div>
-            <h1 className="text-center text-lg text-black font-semibold">Humidity</h1>
-            <div className="flex flex-col px-4">
-              <label className="text-black font-medium text-base">Maximal Value</label>
-              <input
-                type="number"
-                className="bg-slate-300 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
-                placeholder="Input Here"
-                value={humiMax}
-                onChange={(e) => setHumiMax(e.target.value)}
-              />
+          <div className="bg-white rounded-lg">
+            <div className="pt-4">
+              <h1 className="text-center text-lg text-black font-semibold">Temperature</h1>
+              <div className="flex flex-col px-4">
+                <label className="text-black font-medium text-base">Maximal Value</label>
+                <input
+                  type="number"
+                  className="bg-slate-200 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
+                  placeholder="Input Here"
+                  value={tempMax}
+                  onChange={(e) => setTempMax(e.target.value)}
+                />
 
-              <label className="text-black font-medium text-base">Minimal Value</label>
-              <input
-                type="number"
-                className="bg-slate-300 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
-                placeholder="Input Here"
-                value={humiMin}
-                onChange={(e) => setHumiMin(e.target.value)}
-              />
+                <label className="text-black font-medium text-base">Minimal Value</label>
+                <input
+                  type="number"
+                  className="bg-slate-200 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
+                  placeholder="Input Here"
+                  value={tempMin}
+                  onChange={(e) => setTempMin(e.target.value)}
+                />
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center justify-center gap-4 py-7">
-            <button
-              onClick={handleCancel}
-              className="bg-red-500 hover:bg-red-600 w-1/5 p-2 rounded-lg text-center font-semibold"
-            >
-              <h1>Cancel</h1>
-            </button>
+            <div>
+              <h1 className="text-center text-lg text-black font-semibold">Humidity</h1>
+              <div className="flex flex-col px-4">
+                <label className="text-black font-medium text-base">Maximal Value</label>
+                <input
+                  type="number"
+                  className="bg-slate-300 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
+                  placeholder="Input Here"
+                  value={humiMax}
+                  onChange={(e) => setHumiMax(e.target.value)}
+                />
 
-            <button
-              onClick={handleEnter}
-              className="bg-green-500 hover:bg-green-600 w-1/5 p-2 rounded-lg text-center font-semibold"
-            >
-              <h1>Enter</h1>
-            </button>
+                <label className="text-black font-medium text-base">Minimal Value</label>
+                <input
+                  type="number"
+                  className="bg-slate-300 mb-3 border-solid border-black rounded px-2 py-1 text-black border-2"
+                  placeholder="Input Here"
+                  value={humiMin}
+                  onChange={(e) => setHumiMin(e.target.value)}
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center gap-4 py-7">
+              <button
+                onClick={handleCancel}
+                className="bg-red-500 hover:bg-red-600 w-1/5 p-2 rounded-lg text-center font-semibold"
+              >
+                <h1>Cancel</h1>
+              </button>
+
+              <button
+                onClick={handleEnter}
+                className="bg-green-500 hover:bg-green-600 w-1/5 p-2 rounded-lg text-center font-semibold"
+              >
+                <h1>Enter</h1>
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <Footer />
-    </div>
+        <Footer />
+      </div>
     </>
   );
 };

@@ -5,7 +5,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-import NewData from './NewData';
+// import NewData from './NewData';
 
 const Header = () => {
   return (
@@ -25,7 +25,7 @@ const Header = () => {
           >
             <SwiperSlide>
               <Image
-                src="/Rectangle.png"
+                src="/banner.svg"
                 alt="Slide 1"
                 width={600}
                 height={300}
@@ -34,7 +34,7 @@ const Header = () => {
             </SwiperSlide>
             <SwiperSlide>
               <Image
-                src="/Rectangle.png"
+                src="/banner.svg"
                 alt="Slide 2"
                 width={600}
                 height={300}
@@ -43,7 +43,7 @@ const Header = () => {
             </SwiperSlide>
             <SwiperSlide>
               <Image
-                src="/Rectangle.png"
+                src="/banner.svg"
                 alt="Slide 3"
                 width={600}
                 height={300}

@@ -33,7 +33,7 @@ const page = () => {
             <div className='p-4'>
                 <h1 className='pb-2 text-2xl font-semibold' style={{ color: '#167D0A' }}>MicroGreens</h1>
                 <div className='flex flex-col items-center pb-5'>
-                    <Image src="/Group 21.png" width={170} height={170} alt="Logo"></Image>
+                    <Image src="/brokoli.svg" width={170} height={170} alt="Logo"></Image>
                 </div>
                 <div className='flex justify-center'>
                     <h1 className='text-xl font-semibold p-2 text-center w-full rounded-t-lg' style={{ background: '#D8FDCB' }}>Kecambah</h1>

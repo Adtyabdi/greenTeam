@@ -12,7 +12,7 @@ const Informasi = () => {
             <Link href="../infoBrokoli">
                 <div className="flex justify-center">
                     <Image
-                    src="/pngwing.png" 
+                    src="/kecambah.svg" 
                     alt="Brokoli"
                     width={110}
                     height={110}
@@ -28,7 +28,7 @@ const Informasi = () => {
                 <Link href="../infoKecambah">
                 <div className="flex justify-center">
                     <Image
-                    src="/pngwing.png" 
+                    src="/brokoli.svg" 
                     alt="Brokoli"
                     width={110}
                     height={110}

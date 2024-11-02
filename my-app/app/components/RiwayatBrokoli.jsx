@@ -9,7 +9,7 @@ const RiwayatBrokoli = () => {
         <div className="flex items-center p-4 bg-white rounded-xl shadow-md space-x-4 transition transform hover:scale-105 hover:shadow-2xl">
             <div className="bg-yellow-100 p-2 rounded-lg shadow">
                 <Image
-                    src="/pngwing.png"
+                    src="/kecambah.svg"
                     alt="Arugula Mustard"
                     width={150}
                     height={150}
