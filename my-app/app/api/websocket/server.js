@@ -22,15 +22,27 @@ export default async function handler(req, res) {
           charset: 'utf8mb4',
         });
 
+        // Handle incoming messages from client
         ws.on('message', async (message) => {
-          // Tangani pesan yang diterima dari klien (misalnya, data yang ingin disimpan)
           const data = JSON.parse(message);
           await saveData(data, connection);
         });
 
-        // Mengambil data secara berkala
+        // Fetch data periodically
         const fetchData = async () => {
-          const result = await fetchDataFromDB(connection);
+          const [brokoliRows] = await connection.execute(
+            'SELECT dht1_temp, dht1_humi, moisture1, light, date FROM incubator ORDER BY date DESC LIMIT 1'
+          );
+
+          const [kecambahRows] = await connection.execute(
+            'SELECT dht2_temp, dht2_humi, moisture2, light, date FROM incubator ORDER BY date DESC LIMIT 1'
+          );
+
+          const result = {
+            infoBrokoli: brokoliRows[0] || { message: 'Tidak ada data untuk Brokoli' },
+            infoKecambah: kecambahRows[0] || { message: 'Tidak ada data untuk Kecambah' },
+          };
+
           ws.send(JSON.stringify(result));
         };
 
@@ -68,7 +80,6 @@ export default async function handler(req, res) {
 }
 
 async function saveData(data, connection) {
-  // Simpan data ke database
   const { dht1_temp, dht1_humi, dht2_temp, dht2_humi, moisture1, moisture2, light } = data;
 
   const currentDate = new Date();
@@ -79,20 +90,4 @@ async function saveData(data, connection) {
     VALUES (?, ?, ?, ?, ?, ?, ?, ?)`, 
     [currentDate, dht1_temp, dht1_humi, dht2_temp, dht2_humi, moisture1, moisture2, light]
   );
-}
-
-async function fetchDataFromDB(connection) {
-  // Ambil data dari database
-  const [brokoliRows] = await connection.execute(
-    'SELECT dht1_temp, dht1_humi, moisture1, light, date FROM incubator ORDER BY date DESC LIMIT 1'
-  );
-
-  const [kecambahRows] = await connection.execute(
-    'SELECT dht2_temp, dht2_humi, moisture2, light, date FROM incubator ORDER BY date DESC LIMIT 1'
-  );
-
-  return {
-    infoBrokoli: brokoliRows[0] || { message: 'Tidak ada data untuk Brokoli' },
-    infoKecambah: kecambahRows[0] || { message: 'Tidak ada data untuk Kecambah' },
-  };
 }
