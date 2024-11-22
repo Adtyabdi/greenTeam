@@ -53,7 +53,7 @@ const Header = () => {
           </Swiper>
         </div>
 
-        <div className="flex justify-between items-center gap-2 pt-4">
+        {/* <div className="flex justify-between items-center gap-2 pt-4">
           <div className="p-2 w-1/4 rounded-lg bg-sky-300">
             <h1 className="text-center">26°C</h1>
           </div>
@@ -66,7 +66,7 @@ const Header = () => {
           <div className="p-2 w-1/4 rounded-lg bg-sky-300">
             <h1 className="text-center">68 %</h1>
           </div>
-        </div>
+        </div> */}
 
         {/* <NewData /> */}
       </div>

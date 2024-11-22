@@ -6,12 +6,12 @@ export async function POST(req) {
 
     const {
       voltage, current,
-      temp, light
+      temp1, temp2, light
     } = body;
 
     if (
       voltage === undefined || current === undefined ||
-      temp === undefined || light === undefined
+      temp1 === undefined || temp2 === undefined || light === undefined 
     ) {
       return new Response(
         JSON.stringify({ error: 'Data tidak lengkap' }),
@@ -34,9 +34,9 @@ export async function POST(req) {
 
     const [result] = await connection.execute(
       `INSERT INTO battery 
-      (date, voltage, current, temp, light) 
-      VALUES (?, ?, ?, ?, ?)`,
-      [currentDate, voltage, current, temp, light]
+      (date, voltage, current, temp1, temp2, light) 
+      VALUES (?, ?, ?, ?, ?, ?)`,
+      [currentDate, voltage, current, temp1, temp2, light]
     );
 
     await connection.end();
