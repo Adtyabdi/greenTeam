@@ -1,8 +1,32 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
 const RiwayatKecambah = () => {
+
+    const [data, setData] = useState({ infoKecambah: null, tabelKecmbah: [] });
+    const [sror, setError] = useState(null);
+
+    useEffect(() => {
+        const eventSource = new EventSource('/api/get');
+
+        eventSource.onmessage = (event) => {
+            const parsedData = JSON.parse(event.data);
+            setData(parsedData);
+        };
+
+        eventSource.onerror = (event) => {
+            console.error('EventSource failed: ', error);
+            setError('Failed to connect to the server. Please try again leter.');
+            eventSource.close();
+        }
+
+        return () => {
+            eventSource.close();
+        };
+    }, []);
+
+    const { infoKecambah, tabelKecmbah } = data;
     return (
         <>
             <Link href="../infoKecambah">
@@ -22,15 +46,15 @@ const RiwayatKecambah = () => {
                             <div className='my-2'>
                                 <div className='flex items-center'>
                                     <Image src="/noto_thermometer.png" width={28} height={28} alt='temp' />
-                                    <p>TESSS</p>
+                                    <p>{infoKecambah ? `${infoKecambah.dht2_temp}` : 'Loading'} °C</p>
                                 </div>
                                 <div className='flex my-2 items-center'>
                                     <Image src="/ion_water-sharp.png" width={28} height={28} alt='water' />
-                                    <p>TESS</p>
+                                    <p>{infoKecambah ? `${infoKecambah.dht2_humi}` : 'Loading'}</p>
                                 </div>
                                 <div className='flex items-center'>
                                     <Image src="/game-icons_fertilizer-bag.png" width={28} height={28} alt='moisture' />
-                                    <p>TESSSS</p>
+                                    <p>{infoKecambah ? `${infoKecambah.moisture2}` : 'Loading'}</p>
                                 </div>
                             </div>
                         </div>

@@ -18,23 +18,27 @@ const Informasi = () => {
                                 className="rounded-md"
                             />
                         </div>
-                        <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
-                            Lingkungan
-                        </h2>
+                        <Link href= '../lingkungan'>
+                            <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
+                                Lingkungan
+                            </h2>
+                        </Link>
                     </div>
                     <div className="bg-yellow-100 border border-green-300 rounded-xl drop-shadow-xl p-6 w-72 transition transform hover:scale-105 hover:shadow-2xl">
-                        <div className="flex justify-center">
-                            <Image
-                                src="/battery3.gif"
-                                alt="Brokoli"
-                                width={110}
-                                height={110}
-                                className="rounded-md"
-                            />
-                        </div>
-                        <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
-                            Battery
-                        </h2>
+                        <Link href='../battery'>
+                            <div className="flex justify-center">
+                                <Image
+                                    src="/battery3.gif"
+                                    alt="Brokoli"
+                                    width={110}
+                                    height={110}
+                                    className="rounded-md"
+                                />
+                            </div>
+                            <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
+                                Battery
+                            </h2>
+                        </Link>
                     </div>
                 </div>
                 <div className='mt-2 border-b-4 border-gray-600'></div>

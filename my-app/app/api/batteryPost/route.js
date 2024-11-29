@@ -5,13 +5,13 @@ export async function POST(req) {
     const body = await req.json();
 
     const {
-      voltage, current,
-      temp1, temp2, light
+      current, panelVoltage, batteryVoltage,
+      batteryPercentage, temperatureCpanel, temperatureCbattery, light
     } = body;
 
     if (
-      voltage === undefined || current === undefined ||
-      temp1 === undefined || temp2 === undefined || light === undefined 
+      current === undefined || panelVoltage === undefined || batteryVoltage === undefined ||
+      batteryPercentage === undefined || temperatureCpanel === undefined || temperatureCbattery === undefined || light === undefined
     ) {
       return new Response(
         JSON.stringify({ error: 'Data tidak lengkap' }),
@@ -34,9 +34,9 @@ export async function POST(req) {
 
     const [result] = await connection.execute(
       `INSERT INTO battery 
-      (date, voltage, current, temp1, temp2, light) 
-      VALUES (?, ?, ?, ?, ?, ?)`,
-      [currentDate, voltage, current, temp1, temp2, light]
+      (date, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, light) 
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [currentDate, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, light]
     );
 
     await connection.end();
@@ -47,6 +47,7 @@ export async function POST(req) {
     );
   } catch (error) {
     console.error('Database Error:', error);
+
     return new Response(
       JSON.stringify({ error: 'Gagal terhubung ke database', details: error.message }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }

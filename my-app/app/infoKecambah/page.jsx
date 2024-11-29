@@ -61,7 +61,7 @@ const page = () => {
                     <thead>
                         <tr className="bg-gray-200">
                             <th className="border border-gray-300  text-center">Date</th>
-                            <th className="border border-gray-300  text-center">Temperature</th>
+                            <th className="border border-gray-300  text-center">Temp</th>
                             <th className="border border-gray-300  text-center">Humidity</th>
                             <th className="border border-gray-300  text-center">Moisture</th>
                         </tr>
