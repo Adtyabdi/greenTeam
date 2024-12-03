@@ -26,7 +26,7 @@ const RiwayatBrokoli = () => {
         return () => {
             eventSource.close();
         };
-    }, []);
+    }, [error]);
     const { infoBrokoli, tabelBrokoli } = data;
 
     return (

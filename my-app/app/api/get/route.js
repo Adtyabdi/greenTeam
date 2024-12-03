@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic';
+
 import { db } from "@/app/lib/db";
 
 export async function GET(req) {
@@ -10,7 +12,6 @@ export async function GET(req) {
 
     const sendData = async () => {
       try {
-        // Query untuk mendapatkan data dari database
         const [brokoliRows] = await connection.execute(`
           SELECT 
             dht1_temp,

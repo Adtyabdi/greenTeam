@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image'
 import Footer from '../components/Footer'
 
-const page = () => {
+const Page = () => {
 
     const [data, setData] = useState({ infoKecambah: null, tabelKecambah: [] });
     const [error, setError] = useState(null);
@@ -26,7 +26,7 @@ const page = () => {
         return () => {
             eventSource.close();
         };
-    }, []);
+    }, [error]);
     const { infoKecambah, tabelKecambah } = data;
     return (
         <>
@@ -99,4 +99,4 @@ const page = () => {
     )
 }
 
-export default page
+export default Page
