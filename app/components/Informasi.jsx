@@ -9,19 +9,19 @@ const Informasi = () => {
                 <h1 className='text-xl font-semibold mb-3' style={{ color: '#167D0A' }}>Informasi</h1>
                 <div className='flex gap-2'>
                     <div className="bg-yellow-100 border border-green-300 rounded-xl drop-shadow-xl p-4 w-72 transition transform hover:scale-105 hover:shadow-2xl">
-                        <div className="flex justify-center">
-                            <Image
-                                src="/kecambah.svg"
-                                alt="Brokoli"
-                                width={110}
-                                height={110}
-                                className="rounded-md"
-                            />
-                        </div>
                         <Link href= '../lingkungan'>
-                            <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
-                                Lingkungan
-                            </h2>
+                            <div className="flex justify-center">
+                                <Image
+                                    src="/kecambah.svg"
+                                    alt="Brokoli"
+                                    width={110}
+                                    height={110}
+                                    className="rounded-md"
+                                />
+                            </div>
+                                <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
+                                    Lingkungan
+                                </h2>
                         </Link>
                     </div>
                     <div className="bg-yellow-100 border border-green-300 rounded-xl drop-shadow-xl p-6 w-72 transition transform hover:scale-105 hover:shadow-2xl">

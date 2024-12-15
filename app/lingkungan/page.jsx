@@ -5,7 +5,29 @@ import Footer from '../components/Footer';
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 
 const Page = () => {
-    const [showNewTable, setShowNewTable] = useState(false);
+    const [showDropdown, setShowDropdown] = useState(null); // State untuk dropdown
+    const [groupedData, setGroupedData] = useState([]); // State untuk data utama yang sudah dikelompokkan per jam
+
+    // Fetch data dari API
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await fetch('/api/get');
+                const stream = await response.body.getReader();
+                const { done, value } = await stream.read();
+                if (!done) {
+                    const text = new TextDecoder().decode(value);
+                    const data = JSON.parse(text.match(/data: (.+)/)[1]); // Ambil JSON dari stream
+
+                    // Ambil data lastDates untuk menampilkan data yang sudah dikelompokkan per jam
+                    setGroupedData(data.lastDates || []); 
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+            }
+        };
+        fetchData();
+    }, []);
 
     return (
         <>
@@ -13,57 +35,67 @@ const Page = () => {
                 <h1 className="text-xl font-semibold mb-3" style={{ color: '#167D0A' }}>Lingkungan</h1>
                 <div>
                     <table className="w-full">
-                        <thead className="items-center">
+                        <thead>
                             <tr>
-                                <th className="font-bold bg-gray-50 p-1 rounded-sm text-center border-b-4">
-                                    Date
+                                <th className="font-bold bg-gray-50 p-2 rounded-sm text-center border-b-4">
+                                    Date (Grouped per Hour)
                                 </th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className="text-center bg-gray-50 h-12 flex justify-between items-center border-b-2">
-                                    <h1 className="ml-10">
-                                        1234
-                                    </h1>
-                                    <button
-                                        className="mr-10"
-                                        onClick={() => setShowNewTable(!showNewTable)}
-                                        aria-label="Toggle table"
-                                    >
-                                        {showNewTable ? (
-                                            <IoIosArrowDropup size={20} />
-                                        ) : (
-                                            <IoIosArrowDropdown size={20} />
-                                        )}
-                                    </button>
-                                </td>
-                            </tr>
+                            {groupedData.map((item, index) => (
+                                <React.Fragment key={index}>
+                                    {/* Baris Utama: Tanggal dan Jam */}
+                                    <tr className="border-b-2">
+                                        <td className="text-center bg-gray-50 h-12 flex justify-between items-center">
+                                            <h1 className="ml-10">
+                                            {item.grouped_datetime}
+                                            </h1>
+                                            <button
+                                                className="mr-10"
+                                                onClick={() =>
+                                                    setShowDropdown((prev) => (prev === index ? null : index))
+                                                }
+                                                aria-label="Toggle detail table"
+                                            >
+                                                {showDropdown === index ? (
+                                                    <IoIosArrowDropup size={20} />
+                                                ) : (
+                                                    <IoIosArrowDropdown size={20} />
+                                                )}
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                    {/* Tabel Detail: Data AVG per Jam */}
+                                    {showDropdown === index && (
+                                        <tr>
+                                            <td colSpan="1" className="p-0">
+                                                <table className="w-full bg-gray-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th className='font-normal bg-slate-200'>Avg Temp</th>
+                                                            <th className='font-normal bg-slate-200'>Avg Humi</th>
+                                                            <th className='font-normal bg-slate-200'>Avg Moisture</th>
+                                                            <th className='font-normal bg-slate-200'>Avg Light</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr className="border-b">
+                                                            <td className='text-center text-sm'>{item.avg_temp?.toFixed(2)}°C</td>
+                                                            <td className='text-center text-sm'>{item.avg_humi?.toFixed(2)}%</td>
+                                                            <td className='text-center text-sm'>{item.avg_moisture?.toFixed(2)}%</td>
+                                                            <td className='text-center text-sm'>{item.avg_light?.toFixed(2)} Lux</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    )}
+                                </React.Fragment>
+                            ))}
                         </tbody>
                     </table>
-
-                    {showNewTable && (
-                        <table className="w-full">
-                            <thead>
-                                <tr>
-                                    <th className='font-normal bg-slate-200'>Temp</th>
-                                    <th className='font-normal bg-slate-200'>Humi</th>
-                                    <th className='font-normal bg-slate-200'>
-                                        Moisture
-                                    </th>
-                                    <th className='font-normal bg-slate-200'>Light</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td className='text-center text-sm'>25°C</td>
-                                    <td className='text-center text-sm'>60%</td>
-                                    <td className='text-center text-sm'>45%</td>
-                                    <td className='text-center text-sm'>800 Lux</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    )}
                 </div>
             </div>
             <Footer />
@@ -71,8 +103,4 @@ const Page = () => {
     );
 };
 
-
-
 export default Page;
-
-

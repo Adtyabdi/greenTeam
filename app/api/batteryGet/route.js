@@ -14,7 +14,7 @@ export async function GET(req) {
       try {
         while (true) {
           const [rows] = await connection.execute(`
-           SELECT panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, current, (batteryVoltage * current) AS power, light FROM battery ORDER BY date DESC LIMIT 1;`);
+           SELECT panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, current, (batteryVoltage * current) AS power, lux FROM battery ORDER BY date DESC LIMIT 1;`);
           if (rows.length > 0) {
             writer.write(`data: ${JSON.stringify(rows[0])}\n\n`);
           } else {

@@ -70,10 +70,9 @@ export async function GET(req) {
           FROM incubator
           GROUP BY date
           ORDER BY date DESC
-          LIMIT 15;
+          LIMIT 10;
         `);
 
-        // Mengubah struktur data avgRows sesuai format yang diinginkan
         const avgValues = avgRows.map((row) => ({
           date: row.date,
           avg_values: [
@@ -87,12 +86,20 @@ export async function GET(req) {
         }));
 
         const [lastDatesRows] = await connection.execute(`
-          SELECT DISTINCT DATE(date) AS date
-          FROM incubator
-          ORDER BY date DESC
-          LIMIT 15;
+       SELECT 
+            DATE_FORMAT(date, '%Y-%m-%d %H:00') AS grouped_datetime, -- Tahun-Bulan-Tanggal Jam
+            AVG((dht1_temp + dht2_temp) / 2) AS avg_temp,
+            AVG((dht1_humi + dht2_humi) / 2) AS avg_humi,
+            AVG((moisture1 + moisture2) / 2) AS avg_moisture,
+            AVG(light) AS avg_light
+        FROM 
+            incubator
+        GROUP BY 
+            grouped_datetime
+        ORDER BY 
+            grouped_datetime DESC
+        LIMIT 10;
         `);
-
         const result = {
           infoBrokoli: brokoliRows[0] || { message: "No data for Brokoli" },
           infoKecambah: kecambahRows[0] || {
@@ -107,7 +114,7 @@ export async function GET(req) {
           tabelAvg: avgValues.length ? avgValues : [{ message: "No data for averages" }],
           lastDates: lastDatesRows.length
             ? lastDatesRows
-            : [{ message: "No data for last 15 dates" }],
+            : [{ message: "No data for last 10 dates" }],
         };
 
         writer.write(`data: ${JSON.stringify(result)}\n\n`);
