@@ -5,10 +5,9 @@ import Footer from '../components/Footer';
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 
 const Page = () => {
-    const [showDropdown, setShowDropdown] = useState(null); // State untuk dropdown
-    const [groupedData, setGroupedData] = useState([]); // State untuk data utama yang sudah dikelompokkan per jam
+    const [showDropdown, setShowDropdown] = useState(null); 
+    const [groupedData, setGroupedData] = useState([]); 
 
-    // Fetch data dari API
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -17,9 +16,8 @@ const Page = () => {
                 const { done, value } = await stream.read();
                 if (!done) {
                     const text = new TextDecoder().decode(value);
-                    const data = JSON.parse(text.match(/data: (.+)/)[1]); // Ambil JSON dari stream
+                    const data = JSON.parse(text.match(/data: (.+)/)[1]); 
 
-                    // Ambil data lastDates untuk menampilkan data yang sudah dikelompokkan per jam
                     setGroupedData(data.lastDates || []); 
                 }
             } catch (error) {
@@ -32,7 +30,7 @@ const Page = () => {
     return (
         <>
             <div className="px-4 my-6">
-                <h1 className="text-xl font-semibold mb-3" style={{ color: '#167D0A' }}>Lingkungan</h1>
+                <h1 className="text-xl font-semibold mb-3" style={{ color: '#167D0A' }}>MicroGreens</h1>
                 <div>
                     <table className="w-full">
                         <thead>
@@ -45,7 +43,6 @@ const Page = () => {
                         <tbody>
                             {groupedData.map((item, index) => (
                                 <React.Fragment key={index}>
-                                    {/* Baris Utama: Tanggal dan Jam */}
                                     <tr className="border-b-2">
                                         <td className="text-center bg-gray-50 h-12 flex justify-between items-center">
                                             <h1 className="ml-10">
@@ -67,7 +64,6 @@ const Page = () => {
                                         </td>
                                     </tr>
 
-                                    {/* Tabel Detail: Data AVG per Jam */}
                                     {showDropdown === index && (
                                         <tr>
                                             <td colSpan="1" className="p-0">

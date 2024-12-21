@@ -100,6 +100,7 @@ export async function GET(req) {
                 grouped_datetime DESC
             LIMIT 10;
         `);
+        
         const result = {
           infoBrokoli: brokoliRows[0] || { message: "No data for Brokoli" },
           infoKecambah: kecambahRows[0] || {

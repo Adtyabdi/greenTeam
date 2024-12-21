@@ -5,7 +5,6 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
-// import NewData from './NewData';
 
 const Header = () => {
   return (
@@ -52,23 +51,6 @@ const Header = () => {
             </SwiperSlide>
           </Swiper>
         </div>
-
-        {/* <div className="flex justify-between items-center gap-2 pt-4">
-          <div className="p-2 w-1/4 rounded-lg bg-sky-300">
-            <h1 className="text-center">26°C</h1>
-          </div>
-          <div className="p-2 w-1/4 rounded-lg bg-sky-300">
-            <h1 className="text-center">51% Rh</h1>
-          </div>
-          <div className="p-2 w-1/4 rounded-lg bg-sky-300">
-            <h1 className="text-center">100 Lux</h1>
-          </div>
-          <div className="p-2 w-1/4 rounded-lg bg-sky-300">
-            <h1 className="text-center">68 %</h1>
-          </div>
-        </div> */}
-
-        {/* <NewData /> */}
       </div>
     </>
   )

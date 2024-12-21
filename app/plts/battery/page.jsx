@@ -1,7 +1,5 @@
-"use client";
-
 import React from 'react'
-import Footer from '../components/Footer';
+import Footer from '@/app/components/Footer'
 
 const page = () => {
   return (
@@ -9,7 +7,7 @@ const page = () => {
       <div className='p-4'>
         <h1 className='pb-2 text-2xl font-semibold' style={{ color: '#167D0A' }}>MicroGreens</h1>
       </div>
-      <Footer/>
+      <Footer />
     </>
   )
 }
