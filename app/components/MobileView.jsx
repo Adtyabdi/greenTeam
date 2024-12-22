@@ -1,8 +1,8 @@
-'use client'; 
+'use client';
 
 import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import Header from './Header';
 import Informasi from './Informasi';
 import RiwayatBrokoli from './RiwayatBrokoli';
@@ -10,7 +10,7 @@ import RiwayatKecambah from './RiwayatKecambah';
 import Footer from './Footer';
 
 const MobileView = () => {
-  const { data: session, status } = useSession(); 
+  const { data: session, status } = useSession();
   const router = useRouter();
 
   useEffect(() => {
@@ -26,10 +26,10 @@ const MobileView = () => {
   return (
     <div>
       <Header />
-      <Informasi/>
-      <RiwayatBrokoli/>
-      <RiwayatKecambah/>
-      <Footer/>
+      <Informasi />
+      <RiwayatBrokoli />
+      <RiwayatKecambah />
+      <Footer />
       {/* <SignOut /> */}
     </div>
   );

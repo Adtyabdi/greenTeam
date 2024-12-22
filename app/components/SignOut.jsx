@@ -17,7 +17,7 @@ const SignOut = () => {
     <>
       <div className='flex items-center justify-between bg-gray-200 hover:bg-gray-400 p-2 rounded-lg'>
         <button onClick={handleSignOut} className='font-medium text-lg'>Sign Out</button>
-        <IoIosLogOut size={25}/>
+        <IoIosLogOut size={25} />
       </div>
     </>
   );

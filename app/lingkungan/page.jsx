@@ -5,8 +5,8 @@ import Footer from '../components/Footer';
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 
 const Page = () => {
-    const [showDropdown, setShowDropdown] = useState(null); 
-    const [groupedData, setGroupedData] = useState([]); 
+    const [showDropdown, setShowDropdown] = useState(null);
+    const [groupedData, setGroupedData] = useState([]);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -16,9 +16,9 @@ const Page = () => {
                 const { done, value } = await stream.read();
                 if (!done) {
                     const text = new TextDecoder().decode(value);
-                    const data = JSON.parse(text.match(/data: (.+)/)[1]); 
+                    const data = JSON.parse(text.match(/data: (.+)/)[1]);
 
-                    setGroupedData(data.lastDates || []); 
+                    setGroupedData(data.lastDates || []);
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
@@ -46,7 +46,7 @@ const Page = () => {
                                     <tr className="border-b-2">
                                         <td className="text-center bg-gray-50 h-12 flex justify-between items-center">
                                             <h1 className="ml-10">
-                                            {item.grouped_datetime}
+                                                {item.grouped_datetime}
                                             </h1>
                                             <button
                                                 className="mr-10"

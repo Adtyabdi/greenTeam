@@ -34,7 +34,7 @@ const NewData = () => {
     eventSource.onmessage = (event) => {
       const parsedData = JSON.parse(event.data);
       if (parsedData.avgData) {
-        setData(prevData => [parsedData.avgData, ...prevData].slice(0, 5)); // Ambil 5 data terakhir
+        setData(prevData => [parsedData.avgData, ...prevData].slice(0, 5));
       }
     };
 

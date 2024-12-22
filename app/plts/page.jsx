@@ -38,7 +38,7 @@ const page = () => {
                                     className="rounded-md"
                                 />
                             </div>
-                            <h2 className="text-xl font-semibold text-gray-800 mt-4 text-center">
+                            <h2 className="text-xl font-semibold text-gray-800 mt-10 text-center">
                                 Battery
                             </h2>
                         </Link>

@@ -22,7 +22,6 @@ export async function GET(req) {
             LIMIT 1;
           `);
 
-          // Query kedua: Data rata-rata dari tabel battery (per jam)
           const [rowsPanel] = await connection.execute(`
             SELECT 
               DATE_FORMAT(date, '%Y-%m-%d %H:00') AS grouped_datetime,
@@ -40,7 +39,6 @@ export async function GET(req) {
             LIMIT 10;
           `);
 
-          // Gabungkan hasil dari kedua query
           const data = {
             latestBatteryData:
               rowsBattery.length > 0
@@ -57,10 +55,8 @@ export async function GET(req) {
           //   averagePanelData: rowsPanel,
           // };
 
-          // Kirim data melalui stream
           writer.write(`data: ${JSON.stringify(data)}\n\n`);
 
-          // Tunggu 100ms sebelum iterasi berikutnya
           await new Promise((resolve) => setTimeout(resolve, 100));
         }
       } catch (error) {
