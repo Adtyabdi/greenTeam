@@ -26,10 +26,10 @@ const page = () => {
                         <p className="text-center font-semibold text-lg">Fufufafa</p>
                     </div>
                     <div className='pt-5'>
-                        <SignOut />
+                        <PrintButton />
                     </div>
                     <div className='pt-5'>
-                        <PrintButton />
+                        <SignOut />
                     </div>
                 </div>
                 <Footer />
