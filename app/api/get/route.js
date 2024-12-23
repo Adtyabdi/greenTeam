@@ -87,7 +87,7 @@ export async function GET(req) {
 
         const [lastDatesRows] = await connection.execute(`
           SELECT 
-                DATE_FORMAT(date, '%Y-%m-%d %H:00') AS grouped_datetime, -- Tahun-Bulan-Tanggal Jam
+                DATE_FORMAT(date, '%Y-%m-%d %H:00') AS grouped_datetime,
                 AVG((dht1_temp + dht2_temp) / 2) AS avg_temp,
                 AVG((dht1_humi + dht2_humi) / 2) AS avg_humi,
                 AVG((moisture1 + moisture2) / 2) AS avg_moisture,

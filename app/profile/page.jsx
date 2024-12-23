@@ -2,6 +2,7 @@ import React from 'react'
 import SignOut from '../components/SignOut'
 import Footer from '../components/Footer'
 import Image from 'next/image'
+import PrintButton from '../components/PrintButton'
 
 const page = () => {
     return (
@@ -26,6 +27,9 @@ const page = () => {
                     </div>
                     <div className='pt-5'>
                         <SignOut />
+                    </div>
+                    <div className='pt-5'>
+                        <PrintButton />
                     </div>
                 </div>
                 <Footer />

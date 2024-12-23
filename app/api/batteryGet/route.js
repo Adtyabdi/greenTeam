@@ -13,7 +13,6 @@ export async function GET(req) {
     const sendData = async () => {
       try {
         while (true) {
-          // Query pertama: Data terbaru dari tabel battery
           const [rowsBattery] = await connection.execute(`
             SELECT panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, current, 
                    (batteryVoltage * current) AS power, lux 
