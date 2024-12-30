@@ -92,15 +92,20 @@ export async function POST(req) {
 
     await connection.end();
 
-    console.log(avgRows[0].avg_temp);
+    console.log("Average Temperature:", avgRows[0].avg_temp);
+    console.log("Average Humidity:", avgRows[0].avg_humi);
+    console.log(
+      "Average Moisture (Percentage):",
+      parseInt(avgRows[0].avg_moisture) * 100
+    );
 
     return new Response(
       JSON.stringify({
         message: "Data berhasil disimpan",
-        result,
         avg_temp: avgRows[0].avg_temp,
+        avg_humi: avgRows[0].avg_humi,
+        avg_moist: parseInt(avgRows[0].avg_moisture) / 100,
         tempMax: parseInt(rows[0].tempMax),
-        avg_humi: parseInt(avgRows[0].avg_humi),
         humiMax: parseInt(rows[0].humiMax),
       }),
       { status: 200, headers: { "Content-Type": "application/json" } }
