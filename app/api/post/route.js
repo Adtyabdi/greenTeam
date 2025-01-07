@@ -104,7 +104,7 @@ export async function POST(req) {
         message: "Data berhasil disimpan",
         avg_temp: avgRows[0].avg_temp,
         avg_humi: avgRows[0].avg_humi,
-        avg_moist: parseInt(avgRows[0].avg_moisture) / 100,
+        avg_moist: parseInt(avgRows[0].avg_moisture),
         tempMax: parseInt(rows[0].tempMax),
         humiMax: parseInt(rows[0].humiMax),
       }),

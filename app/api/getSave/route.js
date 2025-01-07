@@ -28,9 +28,28 @@ export async function GET(req) {
 
     let query = "";
     if (type === "incubator") {
-      query = "SELECT * FROM incubator";
+      query = `SELECT
+              dht1_temp,
+              dht2_temp,
+              dht1_humi,
+              dht2_humi,
+              moisture1, 
+              moisture2, 
+              light,
+              DATE_FORMAT(date, '%Y/%m/%d %H:%i:%s') AS formatted_date
+             FROM incubator`;
     } else if (type === "battery") {
-      query = "SELECT * FROM battery";
+      query = `SELECT 
+                panelVoltage, 
+                batteryVoltage, 
+                batteryPercentage,
+                temperatureCpanel, 
+                temperatureCbattery,
+                current, 
+                (batteryVoltage * current) AS power,
+                lux,
+                DATE_FORMAT(date, '%Y/%m/%d %H:%i:%s') AS formatted_date
+              FROM battery `;
     }
 
     const [rows] = await connection.execute(query);
