@@ -14,8 +14,15 @@ export async function GET(req) {
       try {
         while (true) {
           const [rowsBattery] = await connection.execute(`
-            SELECT panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, temperatureCbattery, current, 
-                   (batteryVoltage * current) AS power, lux 
+            SELECT 
+              panelVoltage, 
+              batteryVoltage, 
+              FLOOR(batteryPercentage) AS batteryPercentage, 
+              temperatureCpanel, 
+              temperatureCbattery, 
+              current, 
+              (batteryVoltage * current) AS power, 
+              lux 
             FROM battery 
             ORDER BY date DESC 
             LIMIT 1;
@@ -26,7 +33,7 @@ export async function GET(req) {
               DATE_FORMAT(date, '%Y-%m-%d %H:00') AS grouped_datetime,
               AVG(panelVoltage) AS avg_panelVoltage,
               AVG(batteryVoltage) AS avg_batteryVoltage,
-              AVG(batteryPercentage) AS avg_batteryPercentage,
+              FLOOR(AVG(batteryPercentage)) AS avg_batteryPercentage, 
               AVG(temperatureCpanel) AS avg_temperatureCpanel,
               AVG(temperatureCbattery) AS avg_temperatureCbattery,
               AVG(current) AS avg_current,
@@ -38,6 +45,7 @@ export async function GET(req) {
             LIMIT 10;
           `);
 
+          // Format data yang dikirim ke frontend
           const data = {
             latestBatteryData:
               rowsBattery.length > 0
@@ -45,15 +53,8 @@ export async function GET(req) {
                 : { message: "No battery data available" },
             averagePanelData: rowsPanel,
           };
-          
-          // const data = {
-          //   latestPanelData:
-          //     rowsPanel.length > 0
-          //       ? rowsPanel[0]
-          //       : { message: "No battery data available" },
-          //   averagePanelData: rowsPanel,
-          // };
 
+          // Kirim data dalam format SSE
           writer.write(`data: ${JSON.stringify(data)}\n\n`);
 
           await new Promise((resolve) => setTimeout(resolve, 100));

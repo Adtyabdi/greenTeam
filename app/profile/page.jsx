@@ -23,7 +23,7 @@ const page = () => {
                                 alt="profile"
                             />
                         </div>
-                        <p className="text-center font-semibold text-lg">Fufufafa</p>
+                        <p className="text-center font-semibold text-lg">Raden</p>
                     </div>
                     <div className='pt-5'>
                         <PrintButton />

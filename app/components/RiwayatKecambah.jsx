@@ -50,11 +50,11 @@ const RiwayatKecambah = () => {
                                 </div>
                                 <div className='flex my-2 items-center'>
                                     <Image src="/ion_water-sharp.png" width={28} height={28} alt='water' />
-                                    <p>{infoKecambah ? `${infoKecambah.dht2_humi}` : 'Loading'}</p>
+                                    <p>{infoKecambah ? `${infoKecambah.dht2_humi}` : 'Loading'} %</p>
                                 </div>
                                 <div className='flex items-center'>
                                     <Image src="/game-icons_fertilizer-bag.png" width={28} height={28} alt='moisture' />
-                                    <p>{infoKecambah ? `${infoKecambah.moisture2}` : 'Loading'}</p>
+                                    <p>{infoKecambah ? `${infoKecambah.moisture2}` : 'Loading'} %</p>
                                 </div>
                             </div>
                         </div>

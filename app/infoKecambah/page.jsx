@@ -30,7 +30,7 @@ const Page = () => {
     const { infoKecambah, tabelKecambah } = data;
     return (
         <>
-            <div className='p-4'>
+            <div className='p-4 flex flex-col min-h-screen'>
                 <h1 className='pb-2 text-2xl font-semibold' style={{ color: '#167D0A' }}>MicroGreens</h1>
                 <div className='flex flex-col items-center pb-5'>
                     <Image src="/brokoli.svg" width={170} height={170} alt="Logo"></Image>
