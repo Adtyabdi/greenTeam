@@ -25,7 +25,7 @@ const PrintButton = () => {
 
     return (
         <>
-            <div className=" flex justify-between items-center p-2 bg-gray-200 rounded-sm mb-5">
+            <div className=" flex justify-between items-center p-2 bg-gray-200 hover:bg-gray-400 rounded-sm mb-5">
                 <button
                     onClick={() => downloadCSV("incubator")}
                     className="btn btn-primary"
@@ -34,7 +34,7 @@ const PrintButton = () => {
                 </button>
                 <FaPrint size={20} />
             </div>
-            <div className=" flex justify-between items-center p-2 bg-gray-200 rounded-sm">
+            <div className=" flex justify-between items-center p-2 bg-gray-200 hover:bg-gray-400 rounded-sm">
                 <button
                     onClick={() => downloadCSV("battery")}
                     className="btn btn-secondary"

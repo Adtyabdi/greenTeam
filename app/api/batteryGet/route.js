@@ -18,8 +18,7 @@ export async function GET(req) {
               panelVoltage, 
               batteryVoltage, 
               FLOOR(batteryPercentage) AS batteryPercentage, 
-              temperatureCpanel, 
-              temperatureCbattery, 
+              temperatureCpanel,  
               current, 
               (batteryVoltage * current) AS power, 
               lux 
@@ -35,7 +34,6 @@ export async function GET(req) {
               AVG(batteryVoltage) AS avg_batteryVoltage,
               FLOOR(AVG(batteryPercentage)) AS avg_batteryPercentage, 
               AVG(temperatureCpanel) AS avg_temperatureCpanel,
-              AVG(temperatureCbattery) AS avg_temperatureCbattery,
               AVG(current) AS avg_current,
               AVG(batteryVoltage * current) AS avg_power,
               AVG(lux) AS avg_lux
@@ -45,7 +43,7 @@ export async function GET(req) {
             LIMIT 10;
           `);
 
-          // Format data yang dikirim ke frontend
+
           const data = {
             latestBatteryData:
               rowsBattery.length > 0
@@ -54,7 +52,6 @@ export async function GET(req) {
             averagePanelData: rowsPanel,
           };
 
-          // Kirim data dalam format SSE
           writer.write(`data: ${JSON.stringify(data)}\n\n`);
 
           await new Promise((resolve) => setTimeout(resolve, 100));

@@ -71,7 +71,8 @@ const Page = () => {
                           <thead>
                             <tr>
                               <th className='font-normal bg-slate-200'>Avg Volt Battery</th>
-                              <th className='font-normal bg-slate-200'>Avg Temp Battery</th>
+                              {/* <th className='font-normal bg-slate-200'>Avg Temp Battery</th> */}
+                              <th className='font-normal bg-slate-200'>Avg Battery Percentage</th>
                               {/* <th className='font-normal bg-slate-200'>Avg Temp Battery</th>
                               <th className='font-normal bg-slate-200'>Avg Light</th> */}
                             </tr>
@@ -79,7 +80,8 @@ const Page = () => {
                           <tbody>
                             <tr className="border-b">
                               <td className='text-center text-sm'>{item.avg_batteryVoltage?.toFixed(2)} V</td>
-                              <td className='text-center text-sm'>{item.avg_temperatureCbattery?.toFixed(2)}°C</td>
+                              {/* <td className='text-center text-sm'>{item.avg_temperatureCbattery?.toFixed(2)}°C</td> */}
+                              <td className='text-center text-sm'>{item.avg_batteryPercentage?.toFixed(2)}%</td>
                               {/* <td className='text-center text-sm'>{item.avg_temperatureCbattery?.toFixed(2)}°C</td>
                               <td className='text-center text-sm'>{item.avg_lux?.toFixed(2)} Lux</td> */}
                             </tr>
