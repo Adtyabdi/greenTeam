@@ -43,7 +43,6 @@ export async function GET(req) {
             LIMIT 10;
           `);
 
-
           const data = {
             latestBatteryData:
               rowsBattery.length > 0

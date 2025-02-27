@@ -44,7 +44,6 @@ export async function GET(req) {
                 batteryVoltage, 
                 batteryPercentage,
                 temperatureCpanel, 
-                temperatureCbattery,
                 current, 
                 (batteryVoltage * current) AS power,
                 lux,
