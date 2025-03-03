@@ -42,7 +42,15 @@ export async function POST(req) {
     await connection.end();
 
     return new Response(
-      JSON.stringify({ message: 'Data berhasil disimpan', result }),
+      JSON.stringify({
+        message: "Data berhasil disimpan",
+        current: parseFloat(rows[0].current),
+        panelVoltage: parseFloat(rows[0].panelVoltage),
+        batteryVoltage: parseFloat(rows[0].batteryVoltage),
+        batteryPercentage: parseInt(rows[0].batteryPercentage),
+        temperatureCpanel: parseFloat(rows[0].temperatureCpanel),
+        lux: parseInt(rows[0].lux),
+      }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
   } catch (error) {
