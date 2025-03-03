@@ -20,7 +20,7 @@ export async function GET(req) {
               FLOOR(batteryPercentage) AS batteryPercentage, 
               temperatureCpanel,  
               current_A, 
-              (batteryVoltage * current) AS power, 
+              (batteryVoltage * current_A) AS power, 
               lux 
             FROM battery 
             ORDER BY date DESC 
@@ -35,7 +35,7 @@ export async function GET(req) {
               FLOOR(AVG(batteryPercentage)) AS avg_batteryPercentage, 
               AVG(temperatureCpanel) AS avg_temperatureCpanel,
               AVG(current_A) AS avg_current,
-              AVG(batteryVoltage * current) AS avg_power,
+              AVG(batteryVoltage * current_A) AS avg_power,
               AVG(lux) AS avg_lux
             FROM battery
             GROUP BY grouped_datetime
