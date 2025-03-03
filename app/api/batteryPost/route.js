@@ -36,20 +36,22 @@ export async function POST(req) {
       `INSERT INTO battery 
       (date, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux) 
       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [currentDate, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel,  lux]
+      [currentDate, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux]
+    );
+
+    const [rows] = await connection.execute(
+      `SELECT * FROM battery WHERE id = ?`,
+      [result.insertId]
     );
 
     await connection.end();
 
+    console.log("Data berhasil disimpan:", rows[0]);
+
     return new Response(
       JSON.stringify({
         message: "Data berhasil disimpan",
-        current: parseFloat(rows[0].current),
-        panelVoltage: parseFloat(rows[0].panelVoltage),
-        batteryVoltage: parseFloat(rows[0].batteryVoltage),
-        batteryPercentage: parseInt(rows[0].batteryPercentage),
-        temperatureCpanel: parseFloat(rows[0].temperatureCpanel),
-        lux: parseInt(rows[0].lux),
+        data: rows[0], 
       }),
       { status: 200, headers: { 'Content-Type': 'application/json' } }
     );
