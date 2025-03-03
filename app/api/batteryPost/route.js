@@ -5,12 +5,12 @@ export async function POST(req) {
     const body = await req.json();
 
     const {
-      current, panelVoltage, batteryVoltage,
+      current_A, panelVoltage, batteryVoltage,
       batteryPercentage, temperatureCpanel, lux
     } = body;
 
     if (
-      current === undefined || panelVoltage === undefined || batteryVoltage === undefined ||
+      current_A === undefined || panelVoltage === undefined || batteryVoltage === undefined ||
       batteryPercentage === undefined || temperatureCpanel === undefined || lux === undefined
     ) {
       return new Response(
@@ -34,9 +34,9 @@ export async function POST(req) {
 
     const [result] = await connection.execute(
       `INSERT INTO battery 
-      (date, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux) 
+      (date, current_A, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux) 
       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-      [currentDate, current, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux]
+      [currentDate, current_A, panelVoltage, batteryVoltage, batteryPercentage, temperatureCpanel, lux]
     );
 
     const [rows] = await connection.execute(

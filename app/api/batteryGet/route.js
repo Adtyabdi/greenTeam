@@ -19,7 +19,7 @@ export async function GET(req) {
               batteryVoltage, 
               FLOOR(batteryPercentage) AS batteryPercentage, 
               temperatureCpanel,  
-              current, 
+              current_A, 
               (batteryVoltage * current) AS power, 
               lux 
             FROM battery 
@@ -34,7 +34,7 @@ export async function GET(req) {
               AVG(batteryVoltage) AS avg_batteryVoltage,
               FLOOR(AVG(batteryPercentage)) AS avg_batteryPercentage, 
               AVG(temperatureCpanel) AS avg_temperatureCpanel,
-              AVG(current) AS avg_current,
+              AVG(current_A) AS avg_current,
               AVG(batteryVoltage * current) AS avg_power,
               AVG(lux) AS avg_lux
             FROM battery
